@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Максим Бердников](https://up.htmlacademy.ru/javascript/19/user/207597).
-* Наставник: `Неизвестно`.
+* Наставник: [Григорий Бушманов](https://up.htmlacademy.ru/javascript/19/user/1106363).
 
 ---
 
