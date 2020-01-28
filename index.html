@@ -23,7 +23,7 @@
     </section>
 
     <!-- Контейнер для изображений от других пользователей -->
-    <section class="pictures  container">
+    <section class="pictures  container js-pictures-container">
       <h2 class="pictures__title  visually-hidden">Фотографии других пользователей</h2>
 
       <!-- Поле для загрузки нового изображения на сайт -->
@@ -199,11 +199,11 @@
 
   <!-- Шаблон изображения случайного пользователя -->
   <template id="picture">
-    <a href="#" class="picture">
-      <img class="picture__img" src="" width="182" height="182" alt="Случайная фотография">
+    <a href="#" class="picture js-user-picture">
+      <img class="picture__img js-image" src="" width="182" height="182" alt="Случайная фотография">
       <p class="picture__info">
-        <span class="picture__comments"></span>
-        <span class="picture__likes"></span>
+        <span class="picture__comments js-comments"></span>
+        <span class="picture__likes js-likes"></span>
       </p>
     </a>
   </template>
@@ -233,5 +233,6 @@
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
 
+  <script defer src="js/main.js"></script>
 </body>
 </html>
