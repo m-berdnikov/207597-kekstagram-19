@@ -23,16 +23,13 @@ function getRandomDescription() {
 }
 
 function getRandomInfo() {
-  var randomInfo = [];
   var commentIndex = COMMENTS.length;
   var authorIndex = AUTHOR_NAMES.length;
   var userAvatar = 'img/avatar-' + getRandomNumber(1, 6) + '.svg';
   var userMessage = COMMENTS[getRandomNumber(0, commentIndex - 1)];
   var userName = AUTHOR_NAMES[getRandomNumber(0, authorIndex - 1)];
 
-  randomInfo = {avatar: userAvatar, message: userMessage, name: userName};
-
-  return randomInfo;
+  return {avatar: userAvatar, message: userMessage, name: userName};
 }
 
 function getCommentCollection() {
@@ -40,11 +37,7 @@ function getCommentCollection() {
   for (var i = 0; i < getRandomNumber(1, 50); i++) {
     var randomInfo = getRandomInfo();
 
-    comments.push({
-      avatar: randomInfo.avatar,
-      message: randomInfo.message,
-      name: randomInfo.name
-    });
+    comments.push(randomInfo);
   }
 
   return comments;
