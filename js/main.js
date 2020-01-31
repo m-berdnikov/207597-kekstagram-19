@@ -50,8 +50,6 @@ function getCommentCollection() {
   return comments;
 }
 
-console.log(getCommentCollection());
-
 function createPhotos(photosCount) {
   for (var i = 1, photoInfo = []; i <= photosCount; i++) {
     photoInfo.push({
