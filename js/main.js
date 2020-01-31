@@ -11,6 +11,7 @@ var userPictureItem = userPicture.content.querySelector('.js-user-picture');
 
 var photos = [];
 
+var fragment = document.createDocumentFragment();
 
 function getRandomNumber(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min));
@@ -29,9 +30,7 @@ function getRandomInfo() {
   var userMessage = COMMENTS[getRandomNumber(0, commentIndex - 1)];
   var userName = AUTHOR_NAMES[getRandomNumber(0, authorIndex - 1)];
 
-  randomInfo.push(userAvatar);
-  randomInfo.push(userMessage);
-  randomInfo.push(userName);
+  randomInfo = {avatar: userAvatar, message: userMessage, name: userName};
 
   return randomInfo;
 }
@@ -42,16 +41,19 @@ function getCommentCollection() {
     var randomInfo = getRandomInfo();
 
     comments.push({
-      avatar: randomInfo[0],
-      message: randomInfo[1],
-      name: randomInfo[2]
+      avatar: randomInfo.avatar,
+      message: randomInfo.message,
+      name: randomInfo.name
     });
   }
+
   return comments;
 }
 
-function createPhotos(x) {
-  for (var i = 1, photoInfo = []; i <= x; i++) {
+console.log(getCommentCollection());
+
+function createPhotos(photosCount) {
+  for (var i = 1, photoInfo = []; i <= photosCount; i++) {
     photoInfo.push({
       url: 'photos/' + i + '.jpg',
       description: getRandomDescription(),
@@ -75,13 +77,15 @@ function renderPhoto(photo) {
   return photoItem;
 }
 
+function addElements(elements) {
+  for (var i = 0; i < PHOTOS_NUMBER; i++) {
+    elements.appendChild(renderPhoto(photos[i]));
+  }
+}
+
 photos = createPhotos(PHOTOS_NUMBER);
 
-var fragment = document.createDocumentFragment();
-
-for (var i = 0; i < PHOTOS_NUMBER; i++) {
-  fragment.appendChild(renderPhoto(photos[i]));
-}
+addElements(fragment);
 
 picturesContainer.appendChild(fragment);
 
