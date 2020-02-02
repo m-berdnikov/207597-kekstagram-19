@@ -80,7 +80,6 @@ function addElements(elements) {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
     elements.appendChild(renderPhoto(photos[i]));
   }
-
   return elements;
 }
 
@@ -96,16 +95,21 @@ pictureCommentsLoader.classList.add('hidden');
 document.body.classList.add('modal-open');
 
 function renderComment(userComment) {
-  for (var i = 0; i < userComment.comments.length; i++) {
-    var commentItem = document.querySelector('.js-social-comment').cloneNode(true);
-    var commentImg = commentItem.querySelector('.js-social-comment-picture');
-    var commentText = commentItem.querySelector('.js-social-comment-text');
 
-    commentImg.src = userComment.comments[i].avatar;
-    commentImg.alt = userComment.comments[i].name;
-    commentText.textContent = userComment.comments[i].message;
+  var commentItem = document.querySelector('.js-social-comment').cloneNode(true);
+  var commentImg = commentItem.querySelector('.js-social-comment-picture');
+  var commentText = commentItem.querySelector('.js-social-comment-text');
 
-    pictureCommentsBlock.appendChild(commentItem);
+  commentImg.src = userComment.avatar;
+  commentImg.alt = userComment.name;
+  commentText.textContent = userComment.message;
+
+  return pictureCommentsBlock.appendChild(commentItem);
+}
+
+function addComments(comment) {
+  for (var i = 0; i < comment.length; i++) {
+    renderComment(comment[i]);
   }
 }
 
@@ -115,7 +119,7 @@ function renderPictureBlock(pictureInfo) {
   pictureCommentsCount.textContent = pictureInfo.comments.length;
   pictureDesc.textContent = pictureInfo.description;
 
-  renderComment(pictureInfo);
+  addComments(pictureInfo.comments);
 }
 
 renderPictureBlock(photos[0]);
