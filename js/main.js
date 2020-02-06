@@ -8,6 +8,14 @@ var PHOTOS_NUMBER = 25;
 var picturesContainer = document.querySelector('.js-pictures-container');
 var userPicture = document.querySelector('#picture');
 var userPictureItem = userPicture.content.querySelector('.js-user-picture');
+var pictureBlock = document.querySelector('.js-picture');
+var pictureImg = document.querySelector('.js-picture-img');
+var pictureLikes = document.querySelector('.js-picture-likes');
+var pictureCommentsCount = document.querySelector('.js-comments-count');
+var pictureCommentsCountBlock = document.querySelector('.js-comments-count-block');
+var pictureCommentsBlock = document.querySelector('.js-social-comments');
+var pictureCommentsLoader = document.querySelector('.js-comments-loader');
+var pictureDesc = document.querySelector('.js-picture-description');
 
 var photos = [];
 
@@ -72,6 +80,7 @@ function addElements(elements) {
   for (var i = 0; i < PHOTOS_NUMBER; i++) {
     elements.appendChild(renderPhoto(photos[i]));
   }
+  return elements;
 }
 
 photos = createPhotos(PHOTOS_NUMBER);
@@ -80,3 +89,37 @@ addElements(fragment);
 
 picturesContainer.appendChild(fragment);
 
+pictureBlock.classList.remove('hidden');
+pictureCommentsCountBlock.classList.add('hidden');
+pictureCommentsLoader.classList.add('hidden');
+document.body.classList.add('modal-open');
+
+function renderComment(userComment) {
+
+  var commentItem = document.querySelector('.js-social-comment').cloneNode(true);
+  var commentImg = commentItem.querySelector('.js-social-comment-picture');
+  var commentText = commentItem.querySelector('.js-social-comment-text');
+
+  commentImg.src = userComment.avatar;
+  commentImg.alt = userComment.name;
+  commentText.textContent = userComment.message;
+
+  return pictureCommentsBlock.appendChild(commentItem);
+}
+
+function addComments(comment) {
+  for (var i = 0; i < comment.length; i++) {
+    renderComment(comment[i]);
+  }
+}
+
+function renderPictureBlock(pictureInfo) {
+  pictureImg.src = pictureInfo.url;
+  pictureLikes.textContent = pictureInfo.likes;
+  pictureCommentsCount.textContent = pictureInfo.comments.length;
+  pictureDesc.textContent = pictureInfo.description;
+
+  addComments(pictureInfo.comments);
+}
+
+renderPictureBlock(photos[0]);
