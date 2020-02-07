@@ -9,6 +9,7 @@ var picturesContainer = document.querySelector('.js-pictures-container');
 var userPicture = document.querySelector('#picture');
 var userPictureItem = userPicture.content.querySelector('.js-user-picture');
 var pictureBlock = document.querySelector('.js-picture');
+var pictureClose = document.querySelector('.js-cancel');
 var pictureImg = document.querySelector('.js-picture-img');
 var pictureLikes = document.querySelector('.js-picture-likes');
 var pictureCommentsCount = document.querySelector('.js-comments-count');
@@ -89,10 +90,6 @@ addElements(fragment);
 
 picturesContainer.appendChild(fragment);
 
-pictureBlock.classList.remove('hidden');
-pictureCommentsCountBlock.classList.add('hidden');
-pictureCommentsLoader.classList.add('hidden');
-document.body.classList.add('modal-open');
 
 function renderComment(userComment) {
 
@@ -123,3 +120,13 @@ function renderPictureBlock(pictureInfo) {
 }
 
 renderPictureBlock(photos[0]);
+
+// pictureBlock.classList.remove('hidden');
+pictureCommentsCountBlock.classList.add('hidden');
+pictureCommentsLoader.classList.add('hidden');
+// document.body.classList.add('modal-open');
+
+
+pictureClose.addEventListener('click', function () {
+  pictureBlock.classList.add('hidden');
+});
