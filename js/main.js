@@ -121,11 +121,8 @@ function renderPictureBlock(pictureInfo) {
 
 renderPictureBlock(photos[0]);
 
-// pictureBlock.classList.remove('hidden');
 pictureCommentsCountBlock.classList.add('hidden');
 pictureCommentsLoader.classList.add('hidden');
-// document.body.classList.add('modal-open');
-
 
 pictureClose.addEventListener('click', function () {
   pictureBlock.classList.add('hidden');
