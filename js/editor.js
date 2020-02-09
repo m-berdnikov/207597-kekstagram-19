@@ -1,14 +1,14 @@
 'use strict';
 
 var ESC_KEY = 'Escape';
-var MESSAGES = {
-  firstSymbol: 'Хэш-тег должен начинаться с символа # (решётка)',
-  notOnlyHash: 'Хэш-тег не может состоять только из одной решётки',
-  spaceRequire: 'Хэш-теги должны разделяться пробелами',
-  unique: 'Один и тот же хэш-тег не может быть использован дважды',
-  toMany: 'Нельзя указать больше пяти хэш-тегов',
-  toLong: 'Максимальная длина одного хэш-тега 20 символов, включая решётку',
-  spec: 'Хэш-тег должен состоять только из букв и чисел'
+var Message = {
+  FIRST_SYMBOL: 'Хэш-тег должен начинаться с символа # (решётка)',
+  NOT_ONLY_HASH: 'Хэш-тег не может состоять только из одной решётки',
+  SPACE_REQUIRE: 'Хэш-теги должны разделяться пробелами',
+  UNIQUE: 'Один и тот же хэш-тег не может быть использован дважды',
+  MANY: 'Нельзя указать больше пяти хэш-тегов',
+  LONG: 'Максимальная длина одного хэш-тега 20 символов, включая решётку',
+  SPEC: 'Хэш-тег должен состоять только из букв и чисел'
 };
 
 var uploadInput = document.querySelector('.js-upload-file');
@@ -22,7 +22,7 @@ var effectLevelPin = document.querySelector('.js-effect-level-pin');
 var effectLevelLine = document.querySelector('.js-effect-level-line');
 var effectLevelDepth = document.querySelector('.js-effect-level-depth');
 var effectLevelValue = document.querySelector('.js-effect-level-value');
-var effectLevesasdasdlValue = document.querySelector('.img-upload__submit');
+var uploadSubmit = document.querySelector('.js-upload-submit');
 
 function openEditor() {
   document.body.classList.add('modal-open');
@@ -83,7 +83,7 @@ function filterChangeHandler(evt) {
   }
 }
 
-function identical(hashtagsColection) {
+function isIdentical(hashtagsColection) {
   hashtagsColection.sort();
   for (var i = 0; i < hashtagsColection.length - 1; i++) {
     if (hashtagsColection[i] === hashtagsColection[i + 1]) {
@@ -93,29 +93,29 @@ function identical(hashtagsColection) {
   return false;
 }
 
-function hashtagsInputValidation(hashtags) {
+function validateInputHashtags(hashtags) {
   var result = hashtags.value.trim().toLowerCase().split(' ').filter(Boolean);
   for (var i = 0, k = 0; i < result.length; i++) {
     if (result[i].charAt(0) !== '#') {
-      hashtags.setCustomValidity(MESSAGES.firstSymbol);
+      hashtags.setCustomValidity(Message.FIRST_SYMBOL);
       k = 1;
     } else if (result[i].length === 1 && result[i].charAt(0) === '#') {
-      hashtags.setCustomValidity(MESSAGES.notOnlyHash);
+      hashtags.setCustomValidity(Message.NOT_ONLY_HASH);
       k = 1;
     } else if (result[i].split('#').length > 2) {
-      hashtags.setCustomValidity(MESSAGES.spaceRequire);
+      hashtags.setCustomValidity(Message.SPACE_REQUIRE);
       k = 1;
-    } else if (identical(result)) {
-      hashtags.setCustomValidity(MESSAGES.unique);
+    } else if (isIdentical(result)) {
+      hashtags.setCustomValidity(Message.UNIQUE);
       k = 1;
     } else if (result.length > 5) {
-      hashtags.setCustomValidity(MESSAGES.toMany);
+      hashtags.setCustomValidity(Message.MANY);
       k = 1;
     } else if (result[i].length > 20) {
-      hashtags.setCustomValidity(MESSAGES.toLong);
+      hashtags.setCustomValidity(Message.LONG);
       k = 1;
     } else if (result[i].slice(1).search(/[а-яА-ЯёЁa-zA-Z0-9]+$/g) !== 0) {
-      hashtags.setCustomValidity(MESSAGES.spec);
+      hashtags.setCustomValidity(Message.SPEC);
       k = 1;
     } else if (result[i].length === 0) {
       k = 0;
@@ -132,8 +132,8 @@ hashtagsInput.addEventListener('input', function () {
   hashtagsInput.setCustomValidity('');
 });
 
-effectLevesasdasdlValue.addEventListener('click', function () {
-  hashtagsInputValidation(hashtagsInput);
+uploadSubmit.addEventListener('click', function () {
+  validateInputHashtags(hashtagsInput);
 });
 
 editorClose.addEventListener('click', function () {
