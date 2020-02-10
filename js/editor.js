@@ -1,6 +1,5 @@
 'use strict';
 
-var ESC_KEY = 'Escape';
 var Message = {
   FIRST_SYMBOL: 'Хэш-тег должен начинаться с символа # (решётка)',
   NOT_ONLY_HASH: 'Хэш-тег не может состоять только из одной решётки',
@@ -39,11 +38,7 @@ function closeEditor() {
 }
 
 function openEditorEscPressHandler(evt) {
-  if (evt.key === ESC_KEY) {
-    if (document.activeElement !== hashtagsInput) {
-      closeEditor();
-    }
-  }
+  window.util.isEscEvent(evt, hashtagsInput, closeEditor);
 }
 
 function sliderChangeHandler() {
@@ -83,16 +78,6 @@ function filterChangeHandler(evt) {
   }
 }
 
-function isIdentical(hashtagsColection) {
-  hashtagsColection.sort();
-  for (var i = 0; i < hashtagsColection.length - 1; i++) {
-    if (hashtagsColection[i] === hashtagsColection[i + 1]) {
-      return true;
-    }
-  }
-  return false;
-}
-
 function validateInputHashtags(hashtags) {
   var result = hashtags.value.trim().toLowerCase().split(' ').filter(Boolean);
   for (var i = 0, k = 0; i < result.length; i++) {
@@ -105,7 +90,7 @@ function validateInputHashtags(hashtags) {
     } else if (result[i].split('#').length > 2) {
       hashtags.setCustomValidity(Message.SPACE_REQUIRE);
       k = 1;
-    } else if (isIdentical(result)) {
+    } else if (window.util.isIdentical(result)) {
       hashtags.setCustomValidity(Message.UNIQUE);
       k = 1;
     } else if (result.length > 5) {
