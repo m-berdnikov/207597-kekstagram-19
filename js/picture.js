@@ -1,13 +1,10 @@
 'use strict';
 
 (function () {
-  var PHOTOS_NUMBER = 25;
 
   var picturesContainer = document.querySelector('.js-pictures-container');
   var userPicture = document.querySelector('#picture');
   var userPictureItem = userPicture.content.querySelector('.js-user-picture');
-  var fragment = document.createDocumentFragment();
-
 
   function renderPhoto(photo) {
     var photoItem = userPictureItem.cloneNode(true);
@@ -23,9 +20,10 @@
   }
 
   window.load(function (photos) {
+    var fragment = document.createDocumentFragment();
 
     function addPhotos(photosItem) {
-      for (var i = 0; i < PHOTOS_NUMBER; i++) {
+      for (var i = 0; i < photos.length; i++) {
         photosItem.appendChild(renderPhoto(photos[i]));
       }
       return photosItem;

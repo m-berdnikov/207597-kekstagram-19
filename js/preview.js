@@ -55,7 +55,7 @@
     addComments(pictureInfo.comments);
   }
 
-  function openUserPicture(photos) {
+  function userPictureClickHendler(photos) {
     var userPictureItemAll = document.querySelectorAll('.js-user-picture');
     userPictureItemAll.forEach(function (item, index) {
       item.addEventListener('click', function () {
@@ -66,7 +66,7 @@
   }
 
   window.load(function (photos) {
-    openUserPicture(photos);
+    userPictureClickHendler(photos);
   });
 
   pictureCommentsCountBlock.classList.add('hidden');
