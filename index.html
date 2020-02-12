@@ -256,8 +256,15 @@
   <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
 </template>
 
+<script>
+  function onSuccess(data) {
+    var animals = data;
+    console.log(animals);
+  }
+</script>
+
 <script defer src="js/utils.js"></script>
-<script defer src="js/data.js"></script>
+<script defer src="js/ajax.js"></script>
 <script defer src="js/picture.js"></script>
 <script defer src="js/preview.js"></script>
 <script defer src="js/editor.js"></script>

@@ -55,17 +55,20 @@
     addComments(pictureInfo.comments);
   }
 
-  function openUserPicture() {
+  function openUserPicture(photos) {
     var userPictureItemAll = document.querySelectorAll('.js-user-picture');
     userPictureItemAll.forEach(function (item, index) {
       item.addEventListener('click', function () {
         openPicture();
-        renderPictureBlock(window.photos[index]);
+        renderPictureBlock(photos[index]);
       });
     });
   }
 
-  openUserPicture();
+  window.load(function (photos) {
+    openUserPicture(photos);
+  });
+
   pictureCommentsCountBlock.classList.add('hidden');
   pictureCommentsLoader.classList.add('hidden');
   pictureClose.addEventListener('click', closePicture);
