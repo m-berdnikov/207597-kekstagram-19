@@ -28,13 +28,18 @@ function openEditor() {
   document.body.classList.add('modal-open');
   editorBlock.classList.remove('hidden');
   effectLevel.classList.add('hidden');
-  effectLevelValue.removeAttribute('value');
   document.addEventListener('keydown', openEditorEscPressHandler);
 }
 
 function closeEditor() {
   document.body.classList.remove('modal-open');
   editorBlock.classList.add('hidden');
+  effectLevelValue.removeAttribute('value');
+  if (imgPreview.dataset.type !== '') {
+    imgPreview.classList.remove('effects__preview--' + imgPreview.dataset.type);
+    imgPreview.dataset.type = '';
+    imgPreview.style.filter = '';
+  }
   document.removeEventListener('keydown', openEditorEscPressHandler);
 }
 
