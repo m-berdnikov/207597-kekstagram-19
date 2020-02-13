@@ -113,40 +113,6 @@ function validateInputHashtags(hashtags) {
   }
   return k;
 }
-//
-// function validateAreaComment(hashtags) {
-//   var result = hashtags.value.trim().toLowerCase().split(' ').filter(Boolean);
-//   for (var i = 0, k = 0; i < result.length; i++) {
-//     if (result[i].charAt(0) !== '#') {
-//       hashtags.setCustomValidity(Message.FIRST_SYMBOL);
-//       k = 1;
-//     } else if (result[i].length === 1 && result[i].charAt(0) === '#') {
-//       hashtags.setCustomValidity(Message.NOT_ONLY_HASH);
-//       k = 1;
-//     } else if (result[i].split('#').length > 2) {
-//       hashtags.setCustomValidity(Message.SPACE_REQUIRE);
-//       k = 1;
-//     } else if (window.util.isIdentical(result)) {
-//       hashtags.setCustomValidity(Message.UNIQUE);
-//       k = 1;
-//     } else if (result.length > 5) {
-//       hashtags.setCustomValidity(Message.MANY);
-//       k = 1;
-//     } else if (result[i].length > 20) {
-//       hashtags.setCustomValidity(Message.LONG);
-//       k = 1;
-//     } else if (result[i].slice(1).search(/[а-яА-ЯёЁa-zA-Z0-9]+$/g) !== 0) {
-//       hashtags.setCustomValidity(Message.SPEC);
-//       k = 1;
-//     } else if (result[i].length === 0) {
-//       k = 0;
-//     } else {
-//       k = 0;
-//     }
-//   }
-//   if
-//   return k;
-// }
 
 uploadInput.addEventListener('change', openEditor);
 
