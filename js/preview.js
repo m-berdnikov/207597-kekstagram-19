@@ -24,7 +24,7 @@
   }
 
   function openPictureEscPressHandler(evt) {
-    window.util.isEscEvent(evt, '', closePicture);
+    window.util.isEscEvent(evt, closePicture);
   }
 
   function renderComment(userComment) {
@@ -55,7 +55,7 @@
     addComments(pictureInfo.comments);
   }
 
-  function userPictureClickHendler(photos) {
+  function userPictureClickHandler(photos) {
     var userPictureItemAll = document.querySelectorAll('.js-user-picture');
     userPictureItemAll.forEach(function (item, index) {
       item.addEventListener('click', function () {
@@ -66,7 +66,7 @@
   }
 
   window.load(function (photos) {
-    userPictureClickHendler(photos);
+    userPictureClickHandler(photos);
   });
 
   pictureCommentsCountBlock.classList.add('hidden');
