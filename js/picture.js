@@ -5,6 +5,7 @@
   var picturesContainer = document.querySelector('.js-pictures-container');
   var userPicture = document.querySelector('#picture');
   var userPictureItem = userPicture.content.querySelector('.js-user-picture');
+  var filtersBlock = document.querySelector('.js-filters-block');
 
   function renderPhoto(photo) {
     var photoItem = userPictureItem.cloneNode(true);
@@ -19,7 +20,7 @@
     return photoItem;
   }
 
-  window.load(function (photos) {
+  window.fillPage = function (photos) {
     var fragment = document.createDocumentFragment();
 
     function addPhotos(photosItem) {
@@ -30,8 +31,14 @@
     }
 
     addPhotos(fragment);
-
     picturesContainer.appendChild(fragment);
+  };
+
+  window.load(function (photos) {
+    window.fillPage(photos);
+    window.setTimeout(function () {
+      filtersBlock.classList.remove('img-filters--inactive');
+    }, 300);
   });
 })();
 

@@ -55,7 +55,7 @@
     addComments(pictureInfo.comments);
   }
 
-  function userPictureClickHandler(photos) {
+  window.userPictureClickHandler = function (photos) {
     var userPictureItemAll = document.querySelectorAll('.js-user-picture');
     userPictureItemAll.forEach(function (item, index) {
       item.addEventListener('click', function () {
@@ -63,10 +63,10 @@
         renderPictureBlock(photos[index]);
       });
     });
-  }
+  };
 
   window.load(function (photos) {
-    userPictureClickHandler(photos);
+    window.userPictureClickHandler(photos);
   });
 
   pictureCommentsCountBlock.classList.add('hidden');

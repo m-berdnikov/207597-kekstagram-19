@@ -13,13 +13,13 @@
 <main>
 
   <!-- Фильтрация изображений от других пользователей -->
-  <section class="img-filters  img-filters--inactive  container">
+  <section class="img-filters js-filters-block img-filters--inactive  container">
     <h2 class="img-filters__title  visually-hidden">Фильтр фотографий</h2>
     <form class="img-filters__form" action="index.html" method="get" autocomplete="off">
-      <button type=button class="img-filters__button  img-filters__button--active" id="filter-default">По умолчанию
+      <button type=button class="img-filters__button js-filters img-filters__button--active" id="filter-default">По умолчанию
       </button>
-      <button type=button class="img-filters__button" id="filter-random">Случайные</button>
-      <button type=button class="img-filters__button" id="filter-discussed">Обсуждаемые</button>
+      <button type=button class="img-filters__button js-filters" id="filter-random">Случайные</button>
+      <button type=button class="img-filters__button js-filters" id="filter-discussed">Обсуждаемые</button>
     </form>
   </section>
 
@@ -257,9 +257,12 @@
 </template>
 
 <script defer src="js/utils.js"></script>
+<script defer src="js/debounce.js"></script>
 <script defer src="js/ajax.js"></script>
+<script defer src="js/data.js"></script>
 <script defer src="js/picture.js"></script>
 <script defer src="js/preview.js"></script>
+<script defer src="js/filters.js"></script>
 <script defer src="js/editor.js"></script>
 </body>
 </html>
