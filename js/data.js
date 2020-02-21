@@ -8,7 +8,7 @@
 
     window.photosOriginal = photosOriginal;
 
-    var photosPopular = photos.slice();
+    var photosPopular = window.photosOriginal.slice();
     photosPopular.sort(function (first, second) {
       if (first.comments.length < second.comments.length) {
         return 1;
@@ -20,12 +20,9 @@
     });
 
     window.photosPopular = photosPopular;
-  });
 
-  window.refreshRandomPhotos = function () {
-    window.load(function (photos) {
-
-      var photosCopy = photos.slice();
+    window.refreshRandomPhotos = function () {
+      var photosCopy = window.photosOriginal.slice();
       var randomPhotos = [];
       for (var e = 0; e < 10; e++) {
         var index = window.util.getRandomNumber(1, photosCopy.length - 1);
@@ -34,10 +31,9 @@
       }
 
       window.randomPhotos = randomPhotos;
+    };
 
-    });
-  };
-
-  window.refreshRandomPhotos();
+    window.refreshRandomPhotos();
+  });
 })();
 

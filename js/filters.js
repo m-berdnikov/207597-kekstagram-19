@@ -4,7 +4,7 @@
 
   var filters = document.querySelectorAll('.js-filters');
 
-  function clearFiltreButton() {
+  function clearFilterButton() {
     filters.forEach(function (item) {
       item.classList.remove('img-filters__button--active');
     });
@@ -18,34 +18,34 @@
     });
   }
 
-  window.fillRandomPhotos = window.debounce(function () {
+  var fillRandomPhotos = window.debounce(function () {
     window.refreshRandomPhotos();
     window.fillPage(window.randomPhotos);
     window.userPictureClickHandler(window.randomPhotos);
   });
 
-  window.fillOriginalPhotos = window.debounce(function () {
+  var fillOriginalPhotos = window.debounce(function () {
     window.fillPage(window.photosOriginal);
     window.userPictureClickHandler(window.photosOriginal);
   });
 
-  window.fillPopularPhotos = window.debounce(function () {
+  var fillPopularPhotos = window.debounce(function () {
     window.fillPage(window.photosPopular);
     window.userPictureClickHandler(window.photosPopular);
   });
 
   filters.forEach(function (item) {
     item.addEventListener('click', function () {
-      clearFiltreButton();
+      clearFilterButton();
       clearPage();
       item.classList.add('img-filters__button--active');
       if (item.id === 'filter-random') {
-        window.fillRandomPhotos();
+        fillRandomPhotos();
 
       } else if (item.id === 'filter-default') {
-        window.fillOriginalPhotos();
+        fillOriginalPhotos();
       } else if (item.id === 'filter-discussed') {
-        window.fillPopularPhotos();
+        fillPopularPhotos();
       }
     });
   });
