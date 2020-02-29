@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<main>
+<main class="js-main">
 
   <!-- Фильтрация изображений от других пользователей -->
   <section class="img-filters js-filters-block img-filters--inactive  container">
@@ -233,20 +233,20 @@
 
 <!-- Сообщение с ошибкой загрузки изображения -->
 <template id="error">
-  <section class="error">
+  <section class="error js-error-block">
     <div class="error__inner">
       <h2 class="error__title">Ошибка загрузки файла</h2>
-      <button type="button" class="error__button">Загрузить другой файл</button>
+      <button type="button" class="error__button js-error-button">Загрузить другой файл</button>
     </div>
   </section>
 </template>
 
 <!-- Сообщение об успешной загрузке изображения -->
 <template id="success">
-  <section class="success">
+  <section class="success js-success-block">
     <div class="success__inner">
       <h2 class="success__title">Изображение успешно загружено</h2>
-      <button type="button" class="success__button">Круто!</button>
+      <button type="button" class="success__button js-success-button">Круто!</button>
     </div>
   </section>
 </template>

@@ -23,6 +23,12 @@
   var effectLevelDepth = document.querySelector('.js-effect-level-depth');
   var effectLevelValue = document.querySelector('.js-effect-level-value');
   var uploadSubmit = document.querySelector('.js-upload-submit');
+  var main = document.querySelector('.js-main');
+  var successBlockTemplate = document.querySelector('#success');
+  var successBlock = successBlockTemplate.content.querySelector('.js-success-block').cloneNode(true);
+  var errorBlockTemplate = document.querySelector('#error');
+  var errorBlock = errorBlockTemplate.content.querySelector('.js-error-block').cloneNode(true);
+
 
   function openEditor() {
     document.body.classList.add('modal-open');
@@ -48,7 +54,6 @@
       window.util.isEscEvent(evt, closeEditor);
     }
   }
-
 
   function sliderChangeHandler() {
     var effectLevelDepthValue = (effectLevelDepth.offsetWidth / effectLevelLine.offsetWidth).toFixed(2);
@@ -124,14 +129,12 @@
 
   uploadInput.addEventListener('change', openEditor);
 
-
   effectLevelPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     var startCoords = {
       x: evt.clientX
     };
-
 
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
@@ -165,6 +168,46 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
+  function showSuccessBlock() {
+    closeEditor();
+    main.appendChild(successBlock);
+    var successButton = document.querySelector('.js-success-button');
+
+    successBlock.addEventListener('click', closeSuccessBlock);
+    successButton.addEventListener('click', closeSuccessBlock);
+    document.addEventListener('keydown', openSuccessBlockEscPressHandler);
+  }
+
+  function closeSuccessBlock() {
+    successBlock.removeEventListener('click', closeSuccessBlock);
+    main.removeChild(successBlock);
+    document.removeEventListener('keydown', openSuccessBlockEscPressHandler);
+  }
+
+  function openSuccessBlockEscPressHandler(evt) {
+    window.util.isEscEvent(evt, closeSuccessBlock);
+  }
+
+  function showErrorBlock() {
+    closeEditor();
+    main.appendChild(errorBlock);
+    var errorButton = document.querySelector('.js-error-button');
+
+    errorBlock.addEventListener('click', closeErrorBlock);
+    errorButton.addEventListener('click', closeErrorBlock);
+    document.addEventListener('keydown', openErrorBlockEscPressHandler);
+  }
+
+  function closeErrorBlock() {
+    errorBlock.removeEventListener('click', closeErrorBlock);
+    main.removeChild(errorBlock);
+    document.removeEventListener('keydown', openErrorBlockEscPressHandler);
+  }
+
+  function openErrorBlockEscPressHandler(evt) {
+    window.util.isEscEvent(evt, closeErrorBlock);
+  }
+
   hashtagsInput.addEventListener('input', function () {
     hashtagsInput.setCustomValidity('');
   });
@@ -178,5 +221,10 @@
   });
 
   uploadImgForm.addEventListener('change', filterChangeHandler);
+
+  uploadImgForm.addEventListener('submit', function (evt) {
+    window.upload(new FormData(uploadImgForm), showSuccessBlock, showErrorBlock);
+    evt.preventDefault();
+  });
 
 })();
