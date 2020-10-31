@@ -127,47 +127,6 @@
     return k;
   }
 
-  uploadInput.addEventListener('change', openEditor);
-
-  effectLevelPin.addEventListener('mousedown', function (evt) {
-    evt.preventDefault();
-
-    var startCoords = {
-      x: evt.clientX
-    };
-
-    function onMouseMove(moveEvt) {
-      moveEvt.preventDefault();
-
-      var shift = {
-        x: startCoords.x - moveEvt.clientX,
-      };
-
-      startCoords = {
-        x: moveEvt.clientX,
-      };
-
-      effectLevelPin.style.left = (effectLevelPin.offsetLeft - shift.x) + 'px';
-      effectLevelDepth.style.width = effectLevelPin.style.left;
-      sliderChangeHandler();
-
-      if ((effectLevelPin.offsetLeft - shift.x) <= 0) {
-        document.removeEventListener('mousemove', onMouseMove);
-      } else if ((effectLevelPin.offsetLeft - shift.x) >= 453) {
-        document.removeEventListener('mousemove', onMouseMove);
-      }
-    }
-
-    function onMouseUp(upEvt) {
-      upEvt.preventDefault();
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
-
   function showSuccessBlock() {
     closeEditor();
     main.appendChild(successBlock);
@@ -218,6 +177,47 @@
 
   editorClose.addEventListener('click', function () {
     closeEditor();
+  });
+
+  uploadInput.addEventListener('change', openEditor);
+
+  effectLevelPin.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    var startCoords = {
+      x: evt.clientX
+    };
+
+    function onMouseMove(moveEvt) {
+      moveEvt.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvt.clientX,
+      };
+
+      startCoords = {
+        x: moveEvt.clientX,
+      };
+
+      effectLevelPin.style.left = (effectLevelPin.offsetLeft - shift.x) + 'px';
+      effectLevelDepth.style.width = effectLevelPin.style.left;
+      sliderChangeHandler();
+
+      if ((effectLevelPin.offsetLeft - shift.x) <= 0) {
+        document.removeEventListener('mousemove', onMouseMove);
+      } else if ((effectLevelPin.offsetLeft - shift.x) >= 453) {
+        document.removeEventListener('mousemove', onMouseMove);
+      }
+    }
+
+    function onMouseUp(upEvt) {
+      upEvt.preventDefault();
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   });
 
   uploadImgForm.addEventListener('change', filterChangeHandler);

@@ -83,7 +83,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect" id="effect-none"
                            value="none" checked>
                     <label for="effect-none" class="effects__label">
-                      <span class="effects__preview  effects__preview--none">Превью фото без эффекта</span>
+                      <span class="effects__preview  effects__preview--none" tabindex="0">Превью фото без эффекта</span>
                       Оригинал
                     </label>
                   </li>
@@ -91,7 +91,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect"
                            id="effect-chrome" value="chrome">
                     <label for="effect-chrome" class="effects__label">
-                      <span class="effects__preview  effects__preview--chrome">Превью эффекта Хром</span>
+                      <span class="effects__preview  effects__preview--chrome" tabindex="0">Превью эффекта Хром</span>
                       Хром
                     </label>
                   </li>
@@ -99,7 +99,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect" id="effect-sepia"
                            value="sepia">
                     <label for="effect-sepia" class="effects__label">
-                      <span class="effects__preview  effects__preview--sepia">Превью эффекта Сепия</span>
+                      <span class="effects__preview  effects__preview--sepia" tabindex="0">Превью эффекта Сепия</span>
                       Сепия
                     </label>
                   </li>
@@ -107,7 +107,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect"
                            id="effect-marvin" value="marvin">
                     <label for="effect-marvin" class="effects__label">
-                      <span class="effects__preview  effects__preview--marvin">Превью эффекта Марвин</span>
+                      <span class="effects__preview  effects__preview--marvin" tabindex="0">Превью эффекта Марвин</span>
                       Марвин
                     </label>
                   </li>
@@ -115,7 +115,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect"
                            id="effect-phobos" value="phobos">
                     <label for="effect-phobos" class="effects__label">
-                      <span class="effects__preview  effects__preview--phobos">Превью эффекта Фобос</span>
+                      <span class="effects__preview  effects__preview--phobos" tabindex="0">Превью эффекта Фобос</span>
                       Фобос
                     </label>
                   </li>
@@ -123,7 +123,7 @@
                     <input type="radio" class="effects__radio js-effect visually-hidden" name="effect" id="effect-heat"
                            value="heat">
                     <label for="effect-heat" class="effects__label">
-                      <span class="effects__preview  effects__preview--heat">Превью эффекта Зной</span>
+                      <span class="effects__preview  effects__preview--heat" tabindex="0">Превью эффекта Зной</span>
                       Зной
                     </label>
                   </li>
@@ -170,18 +170,7 @@
         <div class="social__comment-count js-comments-count-block">5 из <span class="comments-count js-comments-count">125</span>
           комментариев
         </div>
-        <ul class="social__comments js-social-comments">
-          <li class="social__comment js-social-comment">
-            <img class="social__picture js-social-comment-picture" src="img/avatar-4.svg"
-                 alt="Аватар комментатора фотографии" width="35" height="35">
-            <p class="social__text js-social-comment-text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
-          </li>
-          <li class="social__comment">
-            <img class="social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35"
-                 height="35">
-            <p class="social__text">Да это фоташоп!!!!!!!!</p>
-          </li>
-        </ul>
+        <ul class="social__comments js-social-comments"></ul>
 
         <!-- Кнопка для загрузки новой порции комментариев -->
         <button type="button" class="social__comments-loader  comments-loader js-comments-loader">Загрузить еще</button>
@@ -231,6 +220,15 @@
   </a>
 </template>
 
+<!-- Шаблон комментария случайного пользователя -->
+<template id="comments">
+  <li class="social__comment js-social-comment">
+    <img class="social__picture js-social-comment-picture" src="img/avatar-4.svg"
+         alt="Аватар комментатора фотографии" width="35" height="35">
+    <p class="social__text js-social-comment-text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
+  </li>
+</template>
+
 <!-- Сообщение с ошибкой загрузки изображения -->
 <template id="error">
   <section class="error js-error-block">
@@ -262,6 +260,7 @@
 <script defer src="js/data.js"></script>
 <script defer src="js/picture.js"></script>
 <script defer src="js/preview.js"></script>
+<script defer src="js/comments.js"></script>
 <script defer src="js/filters.js"></script>
 <script defer src="js/editor.js"></script>
 </body>
